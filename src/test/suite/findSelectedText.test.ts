@@ -7,6 +7,8 @@ import {
   openDocumentAndFindSelectedText,
 } from "../testUtils";
 
+// why
+
 suite("snippet.findSelectedText", () => {
   suite("openInNewEditor is true", () => {
     const queryText = "query";
