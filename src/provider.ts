@@ -64,7 +64,7 @@ export function encodeRequest(
         : variableName === "query"
           ? query
           : variableName === "index"
-            ? answerNumber
+            ? answerNumber 
             : match;
     }
   );
