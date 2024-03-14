@@ -34,7 +34,7 @@ jobs:
         if: runner.os != 'Linux'
 
       - name: Coverage report
-        uses: GabrielBB/xvfb-action@v1
+        uses: coactions/setup-xvfb@v1
         with:
           run: npm run coverage
       - name: Upload coverage to Codecov
