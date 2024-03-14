@@ -33,6 +33,16 @@ jobs:
         run: npm test
         if: runner.os != 'Linux'
 
+      - name: Coverage report
+        with:
+          run: npm run coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
+
       - name: Vscode package plugin
         uses: JCofman/vscodeaction@master
         with:

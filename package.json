@@ -2,7 +2,7 @@
   "name": "snippet",
   "displayName": "Snippet",
   "description": "Insert a snippet from cht.sh for Python, JavaScript, Ruby, C#, Go, Rust (and any other language)",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "publisher": "vscode-snippet",
   "engines": {
     "vscode": "^1.74.0"
@@ -123,6 +123,15 @@
           "light": "assets/icons/add-light.svg",
           "dark": "assets/icons/add-dark.svg"
         }
+      },
+      {
+        "title": "Restore backups",
+        "command": "snippet.restoreBackups",
+        "category": "Snippet",
+        "icon": {
+          "light": "assets/icons/history-light.svg",
+          "dark": "assets/icons/history-dark.svg"
+        }
       }
     ],
     "configuration": {
@@ -169,6 +178,11 @@
       "view/title": [
         {
           "command": "snippet.createFolder",
+          "when": "view == snippetsView",
+          "group": "navigation"
+        },
+        {
+          "command": "snippet.restoreBackups",
           "when": "view == snippetsView",
           "group": "navigation"
         }
@@ -254,7 +268,8 @@
     "lint": "eslint src",
     "test": "npm run test-compile && export NODE_ENV=test && node ./out/test/runTest.js",
     "test-compile": "tsc -p ./ --allowSyntheticDefaultImports",
-    "pretest-compile": "rimraf out"
+    "pretest-compile": "rimraf out",
+    "coverage": "c8 --clean npm run test"
   },
   "dependencies": {
     "@vscode/vsce": "^2.24.0",
@@ -276,6 +291,7 @@
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vscode/test-electron": "^2.3.9",
+    "c8": "^9.1.0",
     "eslint": "^8.57.0",
     "glob": "^10.3.10",
     "mocha": "^10.3.0",
