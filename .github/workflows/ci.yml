@@ -34,8 +34,7 @@ jobs:
         if: runner.os != 'Linux'
 
       - name: Coverage report
-        with:
-          run: npm run coverage
+        run: npm run coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4.0.1
