@@ -32,15 +32,30 @@ jobs:
       - name: Test (non-Linux)
         run: npm test
         if: runner.os != 'Linux'
-
-      - name: Coverage report
-        run: npm run coverage
-
+        
+          - name: Coverage report
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: npm run coverage
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4.0.1
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
+
+      # - name: Coverage report (Linux)
+      #   run: xvfb-run -a npm run coverage
+      #   if: runner.os == 'Linux'
+
+      # - name: Coverage report (non-Linux)
+      #   run: npm run coverage
+      #   if: runner.os != 'Linux'
+
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v4.0.1
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     fail_ci_if_error: true
 
       - name: Vscode package plugin
         uses: JCofman/vscodeaction@master
