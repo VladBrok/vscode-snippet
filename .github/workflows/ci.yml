@@ -33,8 +33,13 @@ jobs:
         run: npm test
         if: runner.os != 'Linux'
 
-      - name: Coverage report
+      - name: Coverage report (Linux)
+        run: xvfb-run -a npm run coverage
+        if: runner.os == 'Linux'
+
+      - name: Coverage report (non-Linux)
         run: npm run coverage
+        if: runner.os != 'Linux'
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4.0.1
